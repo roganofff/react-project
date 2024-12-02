@@ -1,0 +1,19 @@
+.Header{
+    width: 100%;
+    justify-content: space-between;
+}
+.rightBlock{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.purpleButton {
+    background-color: #800080; 
+    color: white;
+    border: 2px solid #800080; 
+}
+  
+.purpleButton:hover {
+background-color: #9b30b6;
+border-color: #9b30b6;
+}
