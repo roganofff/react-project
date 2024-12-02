@@ -6,6 +6,7 @@ import { Grid, GridItem } from '@consta/uikit/Grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, setServices } from '../../store/store';
 import { getToken } from '../../services/token';
+import { ServicesAPI } from '../../const';
 
 const ServicePage = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const ServicePage = () => {
 
     const fetchServices = async () => {
       try {
-        const response = await fetch('https://673423afa042ab85d1190055.mockapi.io/api/v1/services');
+        const response = await fetch(ServicesAPI);
         if (!response.ok) {
           throw new Error('Ошибка при загрузке услуг');
         }
@@ -44,7 +45,7 @@ const ServicePage = () => {
   return (
     <Grid gap="xl" cols={3}>
       {services.map((service) => (
-        <GridItem key={service.id}>
+        <GridItem key={`service/${service.id}`}>
           <Card verticalSpace="xs" horizontalSpace="xs" style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
             {/* берем случайную фотографию для каждого сервиса */}
             <img

@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { Informer } from '@consta/uikit/Informer';
 import { useNavigate } from 'react-router-dom';
 import { saveToken } from '../../services/token';
+import { UserAuthAPI } from '../../const';
 
 const AuthPage = () => {
     const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ const AuthPage = () => {
     event.preventDefault();
 
     const getUserToken = async (user: string, pass: string): Promise<string> => {
-        const response = await fetch('https://dummyjson.com/auth/login', {
+        const response = await fetch(UserAuthAPI, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
