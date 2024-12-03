@@ -11,8 +11,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user);
   
-  const [loading, setLoading] = useState(true);  // Состояние для индикатора загрузки
-  const [error, setError] = useState("");        // Состояние для ошибок
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const userToken = getToken();
@@ -45,11 +44,6 @@ const ProfilePage = () => {
     fetchUserInfo();
   }, [dispatch, navigate]);
 
-  // Если загрузка данных, отображаем индикатор
-  if (loading) {
-    return <Text size="l">Загрузка...</Text>;
-  }
-
   // Если произошла ошибка, показываем сообщение
   if (error) {
     return <Text size="l" view="critical">Ошибка: {error}</Text>;
@@ -58,15 +52,15 @@ const ProfilePage = () => {
   return (
     <div style={{ display: "flex", justifyContent: "space-between", width: "60vw" }}>
       <div>
-        <Text size="xl" weight="bold" style={{ color: 'white' }}>
+        <Text size="xl" weight="bold" style={{ color: '#0078D2' }}>
           {user?.firstName} {user?.lastName}
         </Text>
-        <Text view="secondary" style={{ color: 'white' }}>{user?.email}</Text>
-        <Text view="secondary" style={{ color: 'white', marginTop: "8px" }}>
+        <Text view="secondary" style={{ color: '#0078D2' }}>{user?.email}</Text>
+        <Text view="secondary" style={{ color: '#0078D2', marginTop: "8px" }}>
           Логин: {user?.username}
         </Text>
-        <Text view="secondary" style={{ color: 'white' }}>Телефон: {user?.phone}</Text>
-        <Text view="secondary" style={{ color: 'white' }}>Возраст: {user?.age}</Text>
+        <Text view="secondary" style={{ color: '#0078D2' }}>Телефон: {user?.phone}</Text>
+        <Text view="secondary" style={{ color: '#0078D2' }}>Возраст: {user?.age}</Text>
       </div>
       {user?.image && (
         <img
