@@ -1,9 +1,12 @@
 .MainLayout{
     min-height: 100vh;
+    max-width: 1200px;
     display: flex;
+    direction: column;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin: 0 auto;
     width: 98vw;
     padding: 2rem;
     gap: 0.5rem;
