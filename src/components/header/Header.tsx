@@ -5,15 +5,18 @@ import Menu from '../menu/Menu';
 import React from 'react';
 import style from "./Header.module.css";
 import { getToken, dropToken } from "../../services/token";
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { jwtDecode } from 'jwt-decode'
 
 
 const Header = () => {
-    const user = useSelector((state: RootState) => state.user);
     const token = getToken();
     const { pathname } = useLocation();
     const navigate = useNavigate();
+
+    let user = undefined;
+    if (token !== '') {
+        user = jwtDecode(token)
+    }
 
     const handleLogout = () => {
         dropToken();
@@ -27,7 +30,7 @@ const Header = () => {
                 <NavLink to='/profile'>
                     <Button
                         view={pathname === "/profile" ? "primary" : "secondary"}
-                        label={user?.firstName + " " + user?.lastName}
+                        label={user ? `${user?.firstName} ${user?.lastName}` : "ФИО"}
                     />
                 </NavLink>
                 <NavLink to='/login'>
