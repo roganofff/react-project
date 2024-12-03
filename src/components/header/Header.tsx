@@ -11,6 +11,7 @@ import { RootState } from '../../store/store';
 
 const Header = () => {
     const user = useSelector((state: RootState) => state.user);
+    const token = getToken();
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
@@ -30,20 +31,16 @@ const Header = () => {
                     />
                 </NavLink>
                 <NavLink to='/login'>
-                    {getToken() ? (
-                        <Button
-                            className={style.purpleButton} 
-                            view="secondary"
-                            onClick={handleLogout}
-                            label='Выход'
+                    {token ? 
+                        <Button 
+                            view="secondary" 
+                            onClick={handleLogout} 
+                            label='Выход' 
                         />
-                    ) : (
-                        <Button
-                            className={style.purpleButton} 
-                            view={pathname === "/login" ? "primary" : "secondary"}
+                    :   <Button 
+                            view={pathname==="/login" ? "primary" : "secondary"} 
                             label='Вход'
-                        />
-                    )}
+                        />}
                 </NavLink>
             </div>
         </Layout>

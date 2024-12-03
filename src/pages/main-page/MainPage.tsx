@@ -4,6 +4,7 @@ import { Text } from "@consta/uikit/Text";
 import { Grid } from "@consta/uikit/Grid";
 import { useDispatch, useSelector } from "react-redux";
 import { setNews, RootState } from "../../store/store";
+import { MainNewsAPI } from "../../const";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const MainPage = () => {
     useEffect(() => {
     const fetchNews = async () => {
         try {
-        const response = await fetch('https://673423afa042ab85d1190055.mockapi.io/api/v1/main');
+        const response = await fetch(MainNewsAPI);
         const data = await response.json();
         dispatch(setNews(data));
         } catch (error) {
